@@ -74,6 +74,7 @@ MicrosoftPinyinCleaner.sln
 ├─ MicrosoftPinyinCleaner/
 │  ├─ App.xaml(.cs)                 程序入口与静默模式
 │  ├─ MainWindow.xaml(.cs)          主窗口与异步交互
+│  ├─ Assets/pinyin.ico             Windows EXE 与任务栏图标
 │  ├─ Models/                       状态与操作结果模型
 │  └─ Services/
 │     ├─ InputMethodService.cs      PowerShell 输入法读取和安全删除
@@ -87,6 +88,8 @@ MicrosoftPinyinCleaner.sln
    ├─ InputMethodPolicyTests.cs
    └─ StartupCommandBuilderTests.cs
 ```
+
+窗口图标使用仓库根目录的 `pinyin.png`，发布时由项目内的多尺寸 `Assets/pinyin.ico` 嵌入 EXE。
 
 ## 安全设计说明
 
