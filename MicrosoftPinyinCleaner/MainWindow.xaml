@@ -1,0 +1,148 @@
+<Window x:Class="MicrosoftPinyinCleaner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="微软拼音清理工具"
+        Width="680"
+        Height="480"
+        MinWidth="680"
+        MinHeight="480"
+        MaxWidth="680"
+        MaxHeight="480"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Foreground="{StaticResource PrimaryTextBrush}"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed">
+    <Grid Margin="28,22,28,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="15" />
+            <RowDefinition Height="142" />
+            <RowDefinition Height="16" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="微软拼音清理工具"
+                       FontSize="25"
+                       FontWeight="SemiBold" />
+            <TextBlock Text="防止 Windows 更新后微软拼音反复恢复"
+                       Margin="0,4,0,0"
+                       FontSize="13.5"
+                       Foreground="{StaticResource SecondaryTextBrush}" />
+        </StackPanel>
+
+        <Border Grid.Row="2"
+                Padding="20,14"
+                Background="{StaticResource CardBackgroundBrush}"
+                BorderBrush="{StaticResource CardBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="146" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           VerticalAlignment="Center"
+                           Text="微软拼音"
+                           Foreground="{StaticResource SecondaryTextBrush}" />
+                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Ellipse x:Name="PinyinStatusDot" Width="8" Height="8" Margin="0,0,9,0" Fill="#7E8999" />
+                    <TextBlock x:Name="PinyinStatusText" Text="正在检测…" FontWeight="SemiBold" />
+                </StackPanel>
+
+                <TextBlock Grid.Row="1"
+                           VerticalAlignment="Center"
+                           Text="自动清理"
+                           Foreground="{StaticResource SecondaryTextBrush}" />
+                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Ellipse x:Name="StartupStatusDot" Width="8" Height="8" Margin="0,0,9,0" Fill="#7E8999" />
+                    <TextBlock x:Name="StartupStatusText" Text="正在读取…" FontWeight="SemiBold" />
+                </StackPanel>
+
+                <TextBlock Grid.Row="2"
+                           VerticalAlignment="Top"
+                           Margin="0,7,0,0"
+                           Text="最近操作结果"
+                           Foreground="{StaticResource SecondaryTextBrush}" />
+                <TextBlock x:Name="LastResultText"
+                           Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="0,7,0,0"
+                           MaxHeight="44"
+                           Text="尚无操作记录"
+                           TextWrapping="Wrap"
+                           Foreground="{StaticResource SecondaryTextBrush}" />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="38" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="1.35*" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="1.1*" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="DetectButton"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Content="立即检测"
+                    Click="DetectButton_Click" />
+            <Button x:Name="RemoveButton"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Content="立即删除微软拼音"
+                    Click="RemoveButton_Click" />
+            <Button x:Name="SettingsButton"
+                    Grid.Row="0"
+                    Grid.Column="4"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Content="打开语言设置"
+                    Click="SettingsButton_Click" />
+
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="EnableStartupButton"
+                        Grid.Column="0"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Content="开启登录自动清理"
+                        Click="EnableStartupButton_Click" />
+                <Button x:Name="DisableStartupButton"
+                        Grid.Column="2"
+                        Style="{StaticResource DangerButtonStyle}"
+                        Content="关闭登录自动清理"
+                        Click="DisableStartupButton_Click" />
+            </Grid>
+        </Grid>
+
+        <TextBlock Grid.Row="6"
+                   FontSize="11.5"
+                   LineHeight="18"
+                   Foreground="{StaticResource MutedTextBrush}"
+                   TextWrapping="Wrap"
+                   Text="本工具只修改当前用户的输入法列表，不删除系统语言组件。建议先确认搜狗拼音、微信输入法或其他中文输入法可以正常使用。" />
+    </Grid>
+</Window>
